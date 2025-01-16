@@ -23,14 +23,14 @@ module fourBit Test
     (output logic a, b, c, d);
 ```
 ### 1.3. Write a structural SystemVerilog module to describe this circuit.
-![alt text](image.png)
+![alt text](images/image.png)
 
 ### 1.4 Extend your solution of Problem 1.2 to test Problem 1.3.
 
 ### 1.5 What are the 4-valued logic characteristics of a 2-input NOR gate (as used in SystemVerilog)? Write a SystemVerilog module and testbench to produce a 4-valued truth table. Use a `$display` statement to print each line of the truth table.
 
 ### 1.6 The following circuit is driven by the initial block shown.
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 ```sv
 logic A, B;
