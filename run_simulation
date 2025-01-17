@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -e
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 <source_file>"
+    echo "Example: $0 multiplexer_2_1.sv"
+    exit 1
+}
+
+function cleanup {
+    # Remove generated files
+    if [ -f "${OUTPUT_NAME}" ]; then
+        rm "${OUTPUT_NAME}"
+    fi
+
+    if [ -f "${VCD_FILE}" ]; then
+        rm "${VCD_FILE}"
+    fi
+}
+
+# Trap cleanup on exit
+trap cleanup EXIT
+
+# Check if correct number of arguments
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+# Check if files exist
+if [ ! -f "$1" ]; then
+    echo "Error: Source file or testbench file not found"
+    usage
+fi
+
+# Extract directory, base name and full paths
+SRC_DIR=$(dirname "$(realpath "$1")")
+BASE_NAME=$(basename "$1" .sv)
+OUTPUT_NAME="${SRC_DIR}/${BASE_NAME}"
+VCD_FILE="${SRC_DIR}/${BASE_NAME}_tb.vcd"
+
+# Compile
+echo "Compiling files..."
+iverilog -o "${OUTPUT_NAME}" "$1" "${SRC_DIR}/${BASE_NAME}_tb.sv" || {
+    echo "Error: Compilation failed"
+    exit 1
+}
+
+# Run simulation
+echo "Running simulation..."
+cd "${SRC_DIR}" && vvp "${OUTPUT_NAME}" || {
+    echo "Error: Simulation failed"
+    exit 1
+}
+
+# Open waveform viewer
+echo "Opening waveform viewer..."
+if [ ! -f "${VCD_FILE}" ]; then
+    echo "Error: VCD file not generated"
+    exit 1
+fi
+
+if command -v gtkwave >/dev/null 2>&1; then
+    gtkwave "${VCD_FILE}"
+else
+    echo "Error: gtkwave not found"
+    exit 1
+fi
