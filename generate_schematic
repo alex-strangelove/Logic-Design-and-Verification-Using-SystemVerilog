@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -e
+
+# Function to display usage
+usage() {
+    echo "Usage: $0 <yosys_script>"
+    echo "Example: $0 synth.ys"
+    exit 1
+}
+
+function cleanup {
+    # Remove generated files
+    if [ -f "${JSON_FILE}" ]; then
+        rm "${JSON_FILE}"
+    fi
+
+    # if [ -f "${DOT_FILE}" ]; then
+    #     rm "${DOT_FILE}"
+    # fi
+}
+
+# Trap cleanup on exit
+trap cleanup EXIT
+
+# Check if correct number of arguments
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+# Check if files exist
+if [ ! -f "$1" ]; then
+    echo "Error: Yosys script file not found"
+    usage
+fi
+
+# Set the yosys script
+YOSYS_SCRIPT=$1
+
+# Run yosys
+yosys -s "${YOSYS_SCRIPT}"
+
+# Generate schematic
+# dot -Tpng multiplexer_2_1.dot -o multiplexer_2_1.png

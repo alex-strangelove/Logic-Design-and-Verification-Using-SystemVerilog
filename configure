@@ -8,6 +8,13 @@ PACKAGES=(
     iverilog
     gtkwave
     verilator
+    yosys
+    imagemagick
+    npm
+)
+
+THIRD_PARTY_PACKAGES=(
+    netlistsvg
 )
 
 # Check if script is run as root
@@ -30,9 +37,21 @@ install_packages() {
     done
 }
 
+# Function to install third-party packages
+install_third_party_packages() {
+    local packages=("$@")
+
+    echo "Installing third-party packages..."
+    for package in "${packages[@]}"; do
+        echo "Installing $package..."
+        npm install -g "$package"
+    done
+}
+
 # Main execution
 main() {
     install_packages "${PACKAGES[@]}"
+    install_third_party_packages "${THIRD_PARTY_PACKAGES[@]}"
     echo "Configuration complete!"
 }
 

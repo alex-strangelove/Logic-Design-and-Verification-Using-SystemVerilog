@@ -49,3 +49,44 @@ Run the script:
 
 This will result opening waveform viewer:
 ![alt text](images/image.png)
+
+## Create Schematics Diagram
+
+> Synthesis done with `yosys`
+
+Create `Yosys` script file with name `source_file_sh.ys`:
+
+```bash
+# Read the SystemVerilog file
+read_verilog test_bench_example/multiplexer_2_1.sv
+
+# Perform synthesis
+synth -top multiplexer_2_1
+
+# Write the netlist to a file
+write_json multiplexer_2_1.json
+
+# Generate the schematic
+#show -format dot -prefix multiplexer_2_1
+```
+
+So you have following structure:
+
+![alt text](images/image-1.png)
+
+Synthesize and Generate Schematics: 
+
+```bash
+./generate_schematic test_bench_example/multiplexer_2
+_1_sh.ys
+```
+
+Create Diagram:
+
+```bash
+./create_diargam multiplexer_2_1.json
+```
+
+This will result in creating a schematic diagram:
+
+![alt text](images/image-2.png)

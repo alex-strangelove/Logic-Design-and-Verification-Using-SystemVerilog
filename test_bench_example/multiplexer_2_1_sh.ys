@@ -1,0 +1,11 @@
+# Read the SystemVerilog file
+read_verilog test_bench_example/multiplexer_2_1.sv
+
+# Perform synthesis
+synth -top multiplexer_2_1
+
+# Write the netlist to a file
+write_json multiplexer_2_1.json
+
+# Generate the schematic
+#show -format dot -prefix multiplexer_2_1

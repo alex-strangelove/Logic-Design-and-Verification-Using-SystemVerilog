@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Check if files exist
+if [ ! -f "$1" ]; then
+    echo "Error: Source file not found"
+fi
+
+BASE_NAME=$(basename "$1" .json)
+
+function cleanup {
+    # Remove generated files
+    if [ -f "${BASE_NAME}.svg" ]; then
+        rm "${BASE_NAME}.svg"
+    fi
+
+    if [ -f "${BASE_NAME}.json" ]; then
+        rm "${BASE_NAME}.json"
+    fi
+}
+
+# Trap cleanup on exit
+trap cleanup EXIT
+
+function create_diagram {
+    BASE_NAME=$(basename "$1" .json)
+    netlistsvg $1 -o $BASE_NAME.svg
+    convert -density 300 -quality 100 $BASE_NAME.svg $BASE_NAME.png
+}
+
+create_diagram $1
