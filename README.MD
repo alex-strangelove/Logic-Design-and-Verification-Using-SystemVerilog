@@ -58,7 +58,7 @@ Create `Yosys` script file with name `source_file_sh.ys`:
 
 ```bash
 # Read the SystemVerilog file
-read_verilog test_bench_example/multiplexer_2_1.sv
+read_verilog -sv test_bench_example/multiplexer_2_1.sv
 
 # Perform synthesis
 synth -top multiplexer_2_1
