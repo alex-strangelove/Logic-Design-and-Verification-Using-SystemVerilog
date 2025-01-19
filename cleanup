@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -e
+
+# Check if argument is provided
+if [ -z "$1" ]; then
+    echo "Error: No path specified"
+    exit 1
+fi
+
+# Check if directory exists
+if [ ! -d "$1" ]; then
+    echo "Error: Directory not found"
+    exit 1
+fi
+
+# Remove generated files
+rm -f "$1"/*.json
+rm -f "$1"/*.svg
+rm -f "$1"/*.png
+rm -f "$1"/*.dot

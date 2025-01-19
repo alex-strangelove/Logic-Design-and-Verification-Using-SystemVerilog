@@ -6,15 +6,12 @@ if [ ! -f "$1" ]; then
 fi
 
 BASE_NAME=$(basename "$1" .json)
+DIR_PATH=$(dirname "$1")
 
 function cleanup {
     # Remove generated files
-    if [ -f "${BASE_NAME}.svg" ]; then
-        rm "${BASE_NAME}.svg"
-    fi
-
-    if [ -f "${BASE_NAME}.json" ]; then
-        rm "${BASE_NAME}.json"
+    if [ -f "$DIR_PATH/${BASE_NAME}.svg" ]; then
+        rm "$DIR_PATH/${BASE_NAME}.svg"
     fi
 }
 
@@ -23,8 +20,8 @@ trap cleanup EXIT
 
 function create_diagram {
     BASE_NAME=$(basename "$1" .json)
-    netlistsvg $1 -o $BASE_NAME.svg
-    convert -density 300 -quality 100 $BASE_NAME.svg $BASE_NAME.png
+    netlistsvg $1 -o $DIR_PATH/$BASE_NAME.svg
+    convert -density 300 -quality 100 $DIR_PATH/$BASE_NAME.svg $DIR_PATH/$BASE_NAME.png
 }
 
 create_diagram $1

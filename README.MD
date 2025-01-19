@@ -58,7 +58,7 @@ Create `Yosys` script file with name `source_file_sh.ys`:
 
 ```bash
 # Read the SystemVerilog file
-read_verilog -sv test_bench_example/multiplexer_2_1.sv
+read_verilog -sv multiplexer_2_1.sv
 
 # Perform synthesis
 synth -top multiplexer_2_1
@@ -77,16 +77,22 @@ So you have following structure:
 Synthesize and Generate Schematics: 
 
 ```bash
-./generate_schematic test_bench_example/multiplexer_2
-_1_sh.ys
+./generate_schematic test_bench_example/multiplexer_2_1_sh.ys
 ```
 
 Create Diagram:
 
 ```bash
-./create_diargam multiplexer_2_1.json
+./create_diargam test_bench_example/multiplexer_2_1.json
 ```
 
 This will result in creating a schematic diagram:
 
 ![alt text](images/image-2.png)
+
+Cleanup:
+> Will remove all generated files inside specified folder
+
+```bash
+./cleanup test_bench_example
+```

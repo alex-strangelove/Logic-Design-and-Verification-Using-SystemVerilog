@@ -3,6 +3,15 @@
 # Exit on error
 set -e
 
+# Check if files exist
+if [ ! -f "$1" ]; then
+    echo "Error: Yosys script file not found"
+    usage
+fi
+
+DIR_PATH=$(dirname "$1")
+cd "${DIR_PATH}"
+
 # Function to display usage
 usage() {
     echo "Usage: $0 <yosys_script>"
@@ -24,22 +33,15 @@ function cleanup {
 # Trap cleanup on exit
 trap cleanup EXIT
 
-# Check if correct number of arguments
-if [ $# -ne 1 ]; then
-    usage
-fi
+function generate_schematic {
+    # Set the yosys script
+    YOSYS_SCRIPT=$(basename "$1")
 
-# Check if files exist
-if [ ! -f "$1" ]; then
-    echo "Error: Yosys script file not found"
-    usage
-fi
+    # Run yosys
+    yosys -s "${YOSYS_SCRIPT}"
 
-# Set the yosys script
-YOSYS_SCRIPT=$1
+    # Generate schematic
+    # dot -Tpng multiplexer_2_1.dot -o multiplexer_2_1.png
+}
 
-# Run yosys
-yosys -s "${YOSYS_SCRIPT}"
-
-# Generate schematic
-# dot -Tpng multiplexer_2_1.dot -o multiplexer_2_1.png
+generate_schematic "$1"
