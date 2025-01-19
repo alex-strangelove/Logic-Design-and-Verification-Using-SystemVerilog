@@ -19,4 +19,7 @@ fi
 rm -f "$1"/*.json
 rm -f "$1"/*.svg
 rm -f "$1"/*.png
+rm -f "$1"/*.vcd
 rm -f "$1"/*.dot
+# Remove files without extension
+find "$1" -type f ! -name "*.*" -delete
