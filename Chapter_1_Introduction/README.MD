@@ -9,8 +9,8 @@ module trueBoole
     nor (f, f1, f2, f5);
 
     or  (f2, f3, f4, f5);
-    not (fl, a);
-    xor (f3, a, fl);
+    not (f1, a);
+    xor (f3, a, f1);
     and (f4, f3, c, a, b),
         (f5, a, c);
 endmodule: trueBoole

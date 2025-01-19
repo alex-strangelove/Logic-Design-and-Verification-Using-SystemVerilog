@@ -1,0 +1,68 @@
+{
+  "creator": "Yosys 0.33 (git sha1 2584903a060)",
+  "modules": {
+    "trueBoole": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "trueBoole.sv:1.1-12.21"
+      },
+      "ports": {
+        "f": {
+          "direction": "output",
+          "bits": [ "0" ]
+        },
+        "a": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "b": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "c": {
+          "direction": "input",
+          "bits": [ 4 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "a": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "trueBoole.sv:3.17-3.18"
+          }
+        },
+        "b": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "trueBoole.sv:3.20-3.21"
+          }
+        },
+        "c": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "trueBoole.sv:3.23-3.24"
+          }
+        },
+        "f": {
+          "hide_name": 0,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "trueBoole.sv:2.19-2.20"
+          }
+        },
+        "f1": {
+          "hide_name": 0,
+          "bits": [ "x" ],
+          "attributes": {
+            "src": "trueBoole.sv:5.13-5.15"
+          }
+        }
+      }
+    }
+  }
+}

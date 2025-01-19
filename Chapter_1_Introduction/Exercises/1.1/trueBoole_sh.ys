@@ -1,0 +1,11 @@
+# Read the SystemVerilog file
+read_verilog -sv trueBoole.sv
+
+# Perform synthesis
+synth -top trueBoole
+
+# Write the netlist to a file
+write_json trueBoole.json
+
+# Generate the schematic
+#show -format dot -prefix trueBoole
