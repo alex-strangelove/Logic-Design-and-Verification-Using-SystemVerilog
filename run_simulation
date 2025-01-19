@@ -39,7 +39,7 @@ fi
 SRC_DIR=$(dirname "$(realpath "$1")")
 BASE_NAME=$(basename "$1" .sv)
 OUTPUT_NAME="${SRC_DIR}/${BASE_NAME}"
-VCD_FILE="${SRC_DIR}/${BASE_NAME}_tb.vcd"
+VCD_FILE="${SRC_DIR}/${BASE_NAME}.vcd"
 
 # Compile
 echo "Compiling files..."
@@ -62,6 +62,7 @@ if [ ! -f "${VCD_FILE}" ]; then
     exit 1
 fi
 
+echo "Opening waveform viewer..."
 if command -v gtkwave >/dev/null 2>&1; then
     gtkwave "${VCD_FILE}"
 else
