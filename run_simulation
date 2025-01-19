@@ -43,7 +43,7 @@ VCD_FILE="${SRC_DIR}/${BASE_NAME}_tb.vcd"
 
 # Compile
 echo "Compiling files..."
-iverilog -o "${OUTPUT_NAME}" "$1" "${SRC_DIR}/${BASE_NAME}_tb.sv" || {
+iverilog -g2012 -o "${OUTPUT_NAME}" "$1" "${SRC_DIR}/${BASE_NAME}_tb.sv" || {
     echo "Error: Compilation failed"
     exit 1
 }
