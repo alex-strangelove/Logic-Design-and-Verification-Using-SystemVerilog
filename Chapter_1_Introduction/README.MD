@@ -16,10 +16,10 @@ module trueBoole
 endmodule: trueBoole
 ```
 
-### 1.2 One of the functions of a testbench is to generate all possible input patterns (combination of 1s and Os) for a combinational circuit that is being tested. Each pattern should be on the testbench output for #1 time unit. Write a testbench that will do this for a 4-input design-under-test. The header for your module is shown below. Imagine that outputs a-d are connected to the inputs of the design under test.
+### 1.2 One of the functions of a testbench is to generate all possible input patterns (combination of 1s and 0s) for a combinational circuit that is being tested. Each pattern should be on the testbench output for #1 time unit. Write a testbench that will do this for a 4-input design-under-test. The header for your module is shown below. Imagine that outputs a-d are connected to the inputs of the design under test.
 
 ```sv
-module fourBit Test
+module fourBitTest
     (output logic a, b, c, d);
 ```
 ### 1.3. Write a structural SystemVerilog module to describe this circuit.

@@ -1,0 +1,11 @@
+# Read the SystemVerilog file
+read_verilog -sv fourBitTest.sv
+
+# Perform synthesis
+synth -top fourBitTest
+
+# Write the netlist to a file
+write_json fourBitTest.json
+
+# Generate the schematic
+#show -format dot -prefix fourBitTest
