@@ -1,4 +1,7 @@
-`timescale 1ns/1ps
+`timescale 1ns/1ns
 
-module fourBitTest(output logic a, b, c, d);
+module fourBitTest
+(
+    input logic a, b, c, d
+);
 endmodule: fourBitTest
