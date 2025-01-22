@@ -1,0 +1,11 @@
+# Read the SystemVerilog file
+read_verilog -sv combinational_circuit.sv
+
+# Perform synthesis
+synth -top combinational_circuit
+
+# Write the netlist to a file
+write_json combinational_circuit.json
+
+# Generate the schematic
+#show -format dot -prefix combinational_circuit
