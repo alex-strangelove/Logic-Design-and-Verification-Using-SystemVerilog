@@ -23,6 +23,8 @@ module combinational_circuit
 endmodule: combinational_circuit
 ```
 
+### 1.4 Extend your solution of Problem 1.2 to test Problem 1.3.
+
 Gates description:
 ![](images/gates.png)
 
