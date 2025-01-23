@@ -1,0 +1,11 @@
+# Read the SystemVerilog file
+read_verilog -sv fullAdder4b.sv
+
+# Perform synthesis
+synth -top fullAdder4b
+
+# Write the netlist to a file
+write_json fullAdder4b.json
+
+# Generate the schematic
+#show -format dot -prefix fullAdder4b
