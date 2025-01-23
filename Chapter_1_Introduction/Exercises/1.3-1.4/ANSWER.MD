@@ -18,7 +18,7 @@ module combinational_circuit
     assign g7 = ~g6;
     assign g8 = C ~& g1;
     
-    assign F = g3 ~^ g5 ~^ g7;
+    assign F = g3 ^ g5 ^ g7;
     assign G = ~D & ~E & g6 & g8; 
 endmodule: combinational_circuit
 ```
@@ -33,36 +33,36 @@ Simulation results:
 
 Testbench:
 ```
-Test  0: A=0 B=0 C=0 D=0 E=0 | F=1 G=0
-Test  1: A=0 B=0 C=0 D=0 E=1 | F=0 G=0
-Test  2: A=0 B=0 C=0 D=1 E=0 | F=1 G=0
-Test  3: A=0 B=0 C=0 D=1 E=1 | F=0 G=0
-Test  4: A=0 B=0 C=1 D=0 E=0 | F=0 G=0
-Test  5: A=0 B=0 C=1 D=0 E=1 | F=0 G=0
-Test  6: A=0 B=0 C=1 D=1 E=0 | F=0 G=0
-Test  7: A=0 B=0 C=1 D=1 E=1 | F=0 G=0
-Test  8: A=0 B=1 C=0 D=0 E=0 | F=1 G=0
-Test  9: A=0 B=1 C=0 D=0 E=1 | F=0 G=0
-Test 10: A=0 B=1 C=0 D=1 E=0 | F=1 G=0
-Test 11: A=0 B=1 C=0 D=1 E=1 | F=0 G=0
-Test 12: A=0 B=1 C=1 D=0 E=0 | F=0 G=1
-Test 13: A=0 B=1 C=1 D=0 E=1 | F=0 G=0
-Test 14: A=0 B=1 C=1 D=1 E=0 | F=1 G=0
-Test 15: A=0 B=1 C=1 D=1 E=1 | F=1 G=0
-Test 16: A=1 B=0 C=0 D=0 E=0 | F=1 G=0
-Test 17: A=1 B=0 C=0 D=0 E=1 | F=0 G=0
-Test 18: A=1 B=0 C=0 D=1 E=0 | F=1 G=0
-Test 19: A=1 B=0 C=0 D=1 E=1 | F=0 G=0
-Test 20: A=1 B=0 C=1 D=0 E=0 | F=0 G=0
-Test 21: A=1 B=0 C=1 D=0 E=1 | F=0 G=0
-Test 22: A=1 B=0 C=1 D=1 E=0 | F=0 G=0
-Test 23: A=1 B=0 C=1 D=1 E=1 | F=0 G=0
-Test 24: A=1 B=1 C=0 D=0 E=0 | F=1 G=0
-Test 25: A=1 B=1 C=0 D=0 E=1 | F=0 G=0
-Test 26: A=1 B=1 C=0 D=1 E=0 | F=1 G=0
-Test 27: A=1 B=1 C=0 D=1 E=1 | F=0 G=0
-Test 28: A=1 B=1 C=1 D=0 E=0 | F=0 G=1
-Test 29: A=1 B=1 C=1 D=0 E=1 | F=0 G=0
-Test 30: A=1 B=1 C=1 D=1 E=0 | F=1 G=0
-Test 31: A=1 B=1 C=1 D=1 E=1 | F=1 G=0
+Test 0: A=0 B=0 C=0 D=0 E=0 | F=0 G=0
+Test 1: A=0 B=0 C=0 D=0 E=1 | F=1 G=0
+Test 2: A=0 B=0 C=0 D=1 E=0 | F=0 G=0
+Test 3: A=0 B=0 C=0 D=1 E=1 | F=1 G=0
+Test 4: A=0 B=0 C=1 D=0 E=0 | F=1 G=0
+Test 5: A=0 B=0 C=1 D=0 E=1 | F=1 G=0
+Test 6: A=0 B=0 C=1 D=1 E=0 | F=1 G=0
+Test 7: A=0 B=0 C=1 D=1 E=1 | F=1 G=0
+Test 8: A=0 B=1 C=0 D=0 E=0 | F=0 G=0
+Test 9: A=0 B=1 C=0 D=0 E=1 | F=1 G=0
+Test10: A=0 B=1 C=0 D=1 E=0 | F=0 G=0
+Test11: A=0 B=1 C=0 D=1 E=1 | F=1 G=0
+Test12: A=0 B=1 C=1 D=0 E=0 | F=1 G=1
+Test13: A=0 B=1 C=1 D=0 E=1 | F=1 G=0
+Test14: A=0 B=1 C=1 D=1 E=0 | F=0 G=0
+Test15: A=0 B=1 C=1 D=1 E=1 | F=0 G=0
+Test16: A=1 B=0 C=0 D=0 E=0 | F=0 G=0
+Test17: A=1 B=0 C=0 D=0 E=1 | F=1 G=0
+Test18: A=1 B=0 C=0 D=1 E=0 | F=0 G=0
+Test19: A=1 B=0 C=0 D=1 E=1 | F=1 G=0
+Test20: A=1 B=0 C=1 D=0 E=0 | F=1 G=0
+Test21: A=1 B=0 C=1 D=0 E=1 | F=1 G=0
+Test22: A=1 B=0 C=1 D=1 E=0 | F=1 G=0
+Test23: A=1 B=0 C=1 D=1 E=1 | F=1 G=0
+Test24: A=1 B=1 C=0 D=0 E=0 | F=0 G=0
+Test25: A=1 B=1 C=0 D=0 E=1 | F=1 G=0
+Test26: A=1 B=1 C=0 D=1 E=0 | F=0 G=0
+Test27: A=1 B=1 C=0 D=1 E=1 | F=1 G=0
+Test28: A=1 B=1 C=1 D=0 E=0 | F=1 G=1
+Test29: A=1 B=1 C=1 D=0 E=1 | F=1 G=0
+Test30: A=1 B=1 C=1 D=1 E=0 | F=0 G=0
+Test31: A=1 B=1 C=1 D=1 E=1 | F=0 G=0
 ```

@@ -1,0 +1,122 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2009.vpi";
+S_0x55af19a7fd20 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x55af19a7feb0 .scope module, "combinational_circuit_tb" "combinational_circuit_tb" 3 1;
+ .timescale -9 -9;
+v0x55af19a99850_0 .var "A", 0 0;
+v0x55af19a99910_0 .var "B", 0 0;
+v0x55af19a999b0_0 .var "C", 0 0;
+v0x55af19a99a50_0 .var "D", 0 0;
+v0x55af19a99af0_0 .var "E", 0 0;
+v0x55af19a99b90_0 .net "F", 0 0, L_0x55af19a9a660;  1 drivers
+v0x55af19a99c60_0 .net "G", 0 0, L_0x55af19a9a900;  1 drivers
+S_0x55af19a43490 .scope begin, "$ivl_for_loop0" "$ivl_for_loop0" 3 21, 3 21 0, S_0x55af19a7feb0;
+ .timescale -9 -9;
+v0x55af19a43670_0 .var/2s "i", 31 0;
+S_0x55af19a98430 .scope module, "dut" "combinational_circuit" 3 9, 4 4 0, S_0x55af19a7feb0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "C";
+    .port_info 3 /INPUT 1 "D";
+    .port_info 4 /INPUT 1 "E";
+    .port_info 5 /OUTPUT 1 "F";
+    .port_info 6 /OUTPUT 1 "G";
+L_0x55af19a99d30 .functor NAND 1, v0x55af19a99910_0, v0x55af19a999b0_0, C4<1>, C4<1>;
+L_0x55af19a99e70 .functor AND 1, v0x55af19a99850_0, L_0x55af19a99d30, C4<1>, C4<1>;
+L_0x55af19a99f80 .functor AND 1, L_0x55af19a99e70, L_0x55af19a9a040, C4<1>, C4<1>;
+L_0x55af19a9a040 .functor NOT 1, L_0x55af19a99d30, C4<0>, C4<0>, C4<0>;
+L_0x55af19a9a130 .functor NAND 1, L_0x55af19a9a040, v0x55af19a99a50_0, C4<1>, C4<1>;
+L_0x55af19a9a1f0 .functor OR 1, v0x55af19a999b0_0, v0x55af19a99af0_0, C4<0>, C4<0>;
+L_0x55af19a9a2f0 .functor NOT 1, L_0x55af19a9a1f0, C4<0>, C4<0>, C4<0>;
+L_0x55af19a9a3b0 .functor NAND 1, v0x55af19a999b0_0, L_0x55af19a99d30, C4<1>, C4<1>;
+L_0x55af19a9a500 .functor XOR 1, L_0x55af19a99f80, L_0x55af19a9a130, C4<0>, C4<0>;
+L_0x55af19a9a660 .functor XOR 1, L_0x55af19a9a500, L_0x55af19a9a570, C4<0>, C4<0>;
+L_0x55af19a9a820 .functor NOT 1, v0x55af19a99a50_0, C4<0>, C4<0>, C4<0>;
+L_0x55af19a9a890 .functor NOT 1, v0x55af19a99af0_0, C4<0>, C4<0>, C4<0>;
+L_0x55af19a9a970 .functor AND 1, L_0x55af19a9a820, L_0x55af19a9a890, C4<1>, C4<1>;
+L_0x55af19a9aa30 .functor AND 1, L_0x55af19a9a970, L_0x55af19a9a1f0, C4<1>, C4<1>;
+L_0x55af19a9a900 .functor AND 1, L_0x55af19a9aa30, L_0x55af19a9a3b0, C4<1>, C4<1>;
+v0x55af19a986e0_0 .net "A", 0 0, v0x55af19a99850_0;  1 drivers
+v0x55af19a987a0_0 .net "B", 0 0, v0x55af19a99910_0;  1 drivers
+v0x55af19a98860_0 .net "C", 0 0, v0x55af19a999b0_0;  1 drivers
+v0x55af19a98900_0 .net "D", 0 0, v0x55af19a99a50_0;  1 drivers
+v0x55af19a989c0_0 .net "E", 0 0, v0x55af19a99af0_0;  1 drivers
+v0x55af19a98ad0_0 .net "F", 0 0, L_0x55af19a9a660;  alias, 1 drivers
+v0x55af19a98b90_0 .net "G", 0 0, L_0x55af19a9a900;  alias, 1 drivers
+v0x55af19a98c50_0 .net *"_ivl_16", 0 0, L_0x55af19a9a500;  1 drivers
+v0x55af19a98d30_0 .net *"_ivl_19", 0 0, L_0x55af19a9a570;  1 drivers
+v0x55af19a98df0_0 .net *"_ivl_22", 0 0, L_0x55af19a9a820;  1 drivers
+v0x55af19a98ed0_0 .net *"_ivl_24", 0 0, L_0x55af19a9a890;  1 drivers
+v0x55af19a98fb0_0 .net *"_ivl_26", 0 0, L_0x55af19a9a970;  1 drivers
+v0x55af19a99090_0 .net *"_ivl_28", 0 0, L_0x55af19a9aa30;  1 drivers
+v0x55af19a99170_0 .net "g1", 0 0, L_0x55af19a99d30;  1 drivers
+v0x55af19a99230_0 .net "g2", 0 0, L_0x55af19a99e70;  1 drivers
+v0x55af19a992f0_0 .net "g3", 0 0, L_0x55af19a99f80;  1 drivers
+v0x55af19a993b0_0 .net "g4", 0 0, L_0x55af19a9a040;  1 drivers
+v0x55af19a99470_0 .net "g5", 0 0, L_0x55af19a9a130;  1 drivers
+v0x55af19a99530_0 .net "g6", 0 0, L_0x55af19a9a1f0;  1 drivers
+v0x55af19a995f0_0 .net "g7", 0 0, L_0x55af19a9a2f0;  1 drivers
+v0x55af19a996b0_0 .net "g8", 0 0, L_0x55af19a9a3b0;  1 drivers
+L_0x55af19a9a570 .reduce/xor L_0x55af19a9a2f0;
+    .scope S_0x55af19a7feb0;
+T_0 ;
+    %fork t_1, S_0x55af19a43490;
+    %jmp t_0;
+    .scope S_0x55af19a43490;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55af19a43670_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v0x55af19a43670_0;
+    %cmpi/s 32, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %load/vec4 v0x55af19a43670_0;
+    %pad/s 5;
+    %split/vec4 1;
+    %store/vec4 v0x55af19a99af0_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0x55af19a99a50_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0x55af19a999b0_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0x55af19a99910_0, 0, 1;
+    %store/vec4 v0x55af19a99850_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call/w 3 24 "$display", "Test %d: A=%b B=%b C=%b D=%b E=%b | F=%b G=%b", v0x55af19a43670_0, v0x55af19a99850_0, v0x55af19a99910_0, v0x55af19a999b0_0, v0x55af19a99a50_0, v0x55af19a99af0_0, v0x55af19a99b90_0, v0x55af19a99c60_0 {0 0 0};
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x55af19a43670_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x55af19a43670_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+    .scope S_0x55af19a7feb0;
+t_0 %join;
+    %vpi_call/w 3 26 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x55af19a7feb0;
+T_1 ;
+    %vpi_call/w 3 31 "$dumpfile", "combinational_circuit.vcd" {0 0 0};
+    %vpi_call/w 3 32 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55af19a7feb0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/home/dev/Projects/RTL/Logic-Design-and-Verification-Using-SystemVerilog/Chapter_1_Introduction/Exercises/1.3-1.4/combinational_circuit_tb.sv";
+    "Chapter_1_Introduction/Exercises/1.3-1.4/combinational_circuit.sv";

@@ -17,6 +17,6 @@ module combinational_circuit
     assign g7 = ~g6;
     assign g8 = C ~& g1;
     
-    assign F = g3 ~^ g5 ~^ ~^ g7;
+    assign F = g3 ^ g5 ^ ^ g7;
     assign G = ~D & ~E & g6 & g8; 
 endmodule: combinational_circuit
