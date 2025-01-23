@@ -44,10 +44,29 @@ and add this to your `initial` block:
 
 Run the script:
 ```bash
-./run_simulation test_bench_example/<source_file>
+./run_simulation test_bench_example/<source_file>.sv
 ```
 
-This will result opening waveform viewer:
+Examples:
+```bash
+# Compile only
+./run_simulation -c <source_file>.sv
+
+# Run simulation only
+./run_simulation -s <source_file>.sv
+
+# Compile and simulate
+./run_simulation -cs <source_file>.sv
+
+# Open waveform viewer only
+./run_simulation -w <source_file>.sv
+
+# Do everything (default behavior)
+./run_simulation <source_file>.sv
+```
+
+Do everything 
+`./run_simulation <source_file>.sv`. Will compile, simulate and open waveform viewer:
 ![alt text](images/image.png)
 
 ## Create Schematics Diagram

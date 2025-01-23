@@ -5,8 +5,8 @@ set -e
 
 # Function to display usage
 usage() {
-    echo "Usage: $0 <source_file>"
-    echo "Example: $0 multiplexer_2_1.sv"
+    echo "Usage: $0 [-c|--compile] [-s|--simulate] [-cs|--compile-simulate] [-w|--wave] <source_file>"
+    echo "Example: $0 -cs multiplexer_2_1.sv"
     exit 1
 }
 
@@ -24,48 +24,89 @@ function cleanup {
 # Trap cleanup on exit
 trap cleanup EXIT
 
-# Check if correct number of arguments
-if [ $# -ne 1 ]; then
-    usage
+COMPILE=0
+SIMULATE=0
+WAVE=0
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -c|--compile)
+            COMPILE=1
+            shift
+            ;;
+        -s|--simulate)
+            SIMULATE=1
+            shift
+            ;;
+        -cs|--compile-simulate)
+            COMPILE=1
+            SIMULATE=1
+            shift
+            ;;
+        -w|--wave)
+            WAVE=1
+            shift
+            ;;
+        -*|--*)
+            echo "Unknown option $1"
+            usage
+            ;;
+        *)
+            SOURCE_FILE=$1
+            shift
+            ;;
+    esac
+done
+
+# If no options specified, do everything
+if [[ $COMPILE -eq 0 ]] && [[ $SIMULATE -eq 0 ]] && [[ $WAVE -eq 0 ]]; then
+    COMPILE=1
+    SIMULATE=1
+    WAVE=1
 fi
 
-# Check if files exist
-if [ ! -f "$1" ]; then
-    echo "Error: Source file or testbench file not found"
+# Check if source file is provided
+if [ -z "$SOURCE_FILE" ] || [ ! -f "$SOURCE_FILE" ]; then
+    echo "Error: Source file not found"
     usage
 fi
 
 # Extract directory, base name and full paths
-SRC_DIR=$(dirname "$(realpath "$1")")
-BASE_NAME=$(basename "$1" .sv)
+SRC_DIR=$(dirname "$(realpath "$SOURCE_FILE")")
+BASE_NAME=$(basename "$SOURCE_FILE" .sv)
 OUTPUT_NAME="${SRC_DIR}/${BASE_NAME}"
 VCD_FILE="${SRC_DIR}/${BASE_NAME}.vcd"
 
-# Compile
-echo "Compiling files..."
-iverilog -g2012 -o "${OUTPUT_NAME}" "$1" "${SRC_DIR}/${BASE_NAME}_tb.sv" || {
-    echo "Error: Compilation failed"
-    exit 1
-}
-
-# Run simulation
-echo "Running simulation..."
-cd "${SRC_DIR}" && vvp "${OUTPUT_NAME}" || {
-    echo "Error: Simulation failed"
-    exit 1
-}
-
-# Open waveform viewer
-echo "Opening waveform viewer..."
-if [ ! -f "${VCD_FILE}" ]; then
-    echo "Error: VCD file not generated"
-    exit 1
+# Compile if requested
+if [ $COMPILE -eq 1 ]; then
+    echo "Compiling files..."
+    iverilog -g2012 -o "${OUTPUT_NAME}" "$SOURCE_FILE" "${SRC_DIR}/${BASE_NAME}_tb.sv" || {
+        echo "Error: Compilation failed"
+        exit 1
+    }
 fi
 
-echo "Opening waveform viewer..."
-if command -v gtkwave >/dev/null 2>&1; then
-    gtkwave "${VCD_FILE}"
-else
-    echo "Error: gtkwave not found"
-    exit 1
+# Simulate if requested
+if [ $SIMULATE -eq 1 ]; then
+    echo "Running simulation..."
+    cd "${SRC_DIR}" && vvp "${OUTPUT_NAME}" || {
+        echo "Error: Simulation failed"
+        exit 1
+    }
+fi
+
+# Open waveform if requested
+if [ $WAVE -eq 1 ]; then
+    if [ ! -f "${VCD_FILE}" ]; then
+        echo "Error: VCD file not found"
+        exit 1
+    fi
+    echo "Opening waveform viewer..."
+    if command -v gtkwave >/dev/null 2>&1; then
+        gtkwave "${VCD_FILE}"
+    else
+        echo "Error: gtkwave not found"
+        exit 1
+    fi
 fi
