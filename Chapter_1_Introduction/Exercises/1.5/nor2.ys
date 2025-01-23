@@ -1,0 +1,11 @@
+# Read the SystemVerilog file
+read_verilog -sv nor2in.sv
+
+# Perform synthesis
+synth -top nor2in
+
+# Write the netlist to a file
+write_json nor2in.json
+
+# Generate the schematic
+#show -format dot -prefix nor2in
