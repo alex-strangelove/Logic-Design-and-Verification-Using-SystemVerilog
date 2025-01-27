@@ -10,6 +10,7 @@ module fullAdder4b_tb;
     initial begin
         $dumpfile("fullAdder4b.vcd");
         $dumpvars(0, fullAdder4b_tb);
+        $monitor("Time=%t a=%b b=%b carry_in=%b carry_out=%b sum=%b",$time, a, b, carry_in, carry_out, sum);
         for (int k = 0; k < 2; k++) begin
             carry_in = k;
             for (int i = 0; i < 16; i++) begin
@@ -18,7 +19,6 @@ module fullAdder4b_tb;
                 for (int y = 0; y < 16; y++) begin
                     b = y;
                     #1;
-                    $monitor("Time=%t a=%b b=%b carry_in=%b carry_out=%b sum=%b",$time, a, b, carry_in, carry_out, sum);
                 end
             end
         end
