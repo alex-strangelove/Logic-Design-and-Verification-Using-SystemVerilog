@@ -4,9 +4,10 @@ module fullAdd
     output sum, carry_out
 );
     xor (sum, a, b, carry_in);
-    and (g1, a, b);
-    and (g2, g1, carry_in);
-    or  (carry_out, g1, g2);
+    and (a_and_b, a, b);
+    and (a_and_cin, a, carry_in);
+    and (b_and_cin, b, carry_in);
+    or  (carry_out, a_and_b, a_and_cin, b_and_cin);
 endmodule: fullAdd
 
 module fullAdder4b

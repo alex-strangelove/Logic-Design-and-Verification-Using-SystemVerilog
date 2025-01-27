@@ -1,27 +1,17 @@
 module fullAdder4b_tb;
-    logic  [3:0] a;
-    logic  [3:0] b;
     logic        carry_in;
     logic  [3:0] sum;
     logic        carry_out;
+    logic  [9:0] count;
 
-    fullAdder4b dut(.*);
+    fullAdder4b dut(.a(count[7:4]), .b(count[3:0]), .carry_in(count[8]), .sum(sum), .carry_out(carry_out));
 
     initial begin
         $dumpfile("fullAdder4b.vcd");
         $dumpvars(0, fullAdder4b_tb);
-        $monitor("Time=%t a=%b b=%b carry_in=%b carry_out=%b sum=%b",$time, a, b, carry_in, carry_out, sum);
-        for (int k = 0; k < 2; k++) begin
-            carry_in = k;
-            for (int i = 0; i < 16; i++) begin
-                a = i;
-                #1;
-                for (int y = 0; y < 16; y++) begin
-                    b = y;
-                    #1;
-                end
-            end
-        end
-        #544 $finish;
+
+        for (count = 0; count <= 10'h200; count++)
+            #1 if ({carry_out, sum} != (count[7:4] + count[3:0] + count[8]))
+                $display("Error: %d != %d + %d + %d", {carry_out, sum}, count[7:4], count[3:0], count[8]);
     end
 endmodule: fullAdder4b_tb;
